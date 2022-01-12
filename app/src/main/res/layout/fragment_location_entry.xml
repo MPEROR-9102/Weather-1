@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".locationentry.LocationEntryFragment">
+
+    <ImageView
+        android:id="@+id/globeImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/contentDesc"
+        android:src="@drawable/ic_globe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <EditText
+        android:id="@+id/locationEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:autofillHints="text"
+        android:hint="@string/locationHint"
+        android:inputType="textAutoCorrect|textAutoComplete|text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="@+id/globeImage"
+        app:layout_constraintStart_toStartOf="@+id/globeImage"
+        app:layout_constraintTop_toBottomOf="@+id/globeImage"
+        app:layout_constraintWidth_percent=".6" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/locationSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/locationSubmitButton"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/locationEditText"
+        app:layout_constraintStart_toStartOf="@+id/locationEditText"
+        app:layout_constraintTop_toBottomOf="@+id/locationEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

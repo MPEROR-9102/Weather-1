@@ -35,4 +35,6 @@ class LocationRepository(context: Context) {
             _savedLocation.value = Location.City(city)
         }
     }
+
+    fun getLocation() = preferences.getString(KEY_CITY, "") ?: ""
 }

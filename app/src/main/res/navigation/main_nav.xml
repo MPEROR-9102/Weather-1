@@ -9,5 +9,14 @@
         android:id="@+id/currentWeatherFragment"
         android:name="com.example.weather.currentweather.CurrentWeatherFragment"
         android:label="fragment_current_weather"
-        tools:layout="@layout/fragment_current_weather" />
+        tools:layout="@layout/fragment_current_weather" >
+        <action
+            android:id="@+id/action_currentWeatherFragment_to_locationEntryFragment"
+            app:destination="@id/locationEntryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationEntryFragment"
+        android:name="com.example.weather.locationentry.LocationEntryFragment"
+        android:label="fragment_location_entry"
+        tools:layout="@layout/fragment_location_entry" />
 </navigation>

@@ -3,4 +3,12 @@
     <string name="toolbarMoreItem">Display Units</string>
     <string name="navBarTodayItem">Today</string>
     <string name="contentDesc">TODO</string>
+    <string name="hourly_text_view">Hourly Forecast</string>
+    <string name="humidity_text_view">Humidity</string>
+    <string name="wind_speed_text_view">Wind-Speed</string>
+    <string name="wind_deg_text_view">Wind-Degree</string>
+    <string name="visibility_text_view">Visibility</string>
+    <string name="locationHint">City</string>
+    <string name="locationSubmitButton">Submit</string>
+    <string name="nowTime">Now</string>
 </resources>
