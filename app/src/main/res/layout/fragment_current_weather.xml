@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".1"
-        tools:text="Seattle" />
+        tools:text="Los Angeles" />
 
     <TextView
         android:id="@+id/tempTextView"
@@ -27,7 +27,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintStart_toStartOf="@+id/locationTextView"
         app:layout_constraintTop_toBottomOf="@+id/locationTextView"
-        tools:text="35°" />
+        tools:text="30°" />
 
     <TextView
         android:id="@+id/mainTextView"
@@ -56,10 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#1A237E"
         android:contentDescription="@string/contentDesc"
-        app:backgroundTint="#1A237E"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_location"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
