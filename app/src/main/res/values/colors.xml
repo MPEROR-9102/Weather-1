@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_200">#534BAE</color>
-    <color name="blue_500">#1A237E</color>
-    <color name="blue_700">#000051</color>
-    <color name="violet_200">#9FA8DA</color>
-    <color name="violet_700">#6F79A8</color>
-    <color name="black">#FF000000</color>
+    <color name="black_200">#484848</color>
+    <color name="black_500">#212121</color>
+    <color name="black_700">#000000</color>
+    <color name="red_500">#d50000</color>
+    <color name="red_700">#9b0000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#CFCFCF</color>
 </resources>

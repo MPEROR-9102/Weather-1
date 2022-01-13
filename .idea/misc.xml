@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_arrow_down.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_arrow_up.xml" value="0.2984375" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_globe.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_location.xml" value="0.2984375" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_wind.xml" value="0.29384615384615387" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout/fragment_current_weather.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_location_entry.xml" value="0.28229166666666666" />

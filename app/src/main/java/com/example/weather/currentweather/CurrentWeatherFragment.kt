@@ -39,6 +39,7 @@ class CurrentWeatherFragment : Fragment() {
         val locationObserver = Observer<Location> { savedLocation ->
             when (savedLocation) {
                 is Location.City ->  {
+                    binding.currentWeatherProgressBar.visibility = ProgressBar.VISIBLE
                     forecastRepository.loadOneCallData(savedLocation.name)
                 }
             }
@@ -50,14 +51,7 @@ class CurrentWeatherFragment : Fragment() {
             binding.currentWeatherProgressBar.visibility = ProgressBar.GONE
 
             binding.hourlyForecastCardView.visibility = ImageView.VISIBLE
-            binding.arrowUpImage.visibility = ImageView.VISIBLE
-            binding.sunriseImageView.visibility = ImageView.VISIBLE
-            binding.sunsetImageView.visibility = ImageView.VISIBLE
-            binding.arrowDownImage.visibility = ImageView.VISIBLE
-            binding.windSpeedImage.visibility = ImageView.VISIBLE
-            binding.humidityText.visibility = ImageView.VISIBLE
-            binding.windDegreeText.visibility = ImageView.VISIBLE
-            binding.visibilityText.visibility = ImageView.VISIBLE
+            binding.currentWeatherInfoCardView.visibility = ImageView.VISIBLE
 
             binding.locationTextView.text = locationRepository.getLocation()
             binding.dateTextView.text = formatDateTime(oneCallForecast.current.date, FormatType.Date)
@@ -69,10 +63,9 @@ class CurrentWeatherFragment : Fragment() {
 
             binding.sunriseTextView.text = formatDateTime(oneCallForecast.current.sunrise, FormatType.SunHour)
             binding.sunsetTextView.text = formatDateTime(oneCallForecast.current.sunset, FormatType.SunHour)
-            binding.windSpeedTextView.text = String.format("%1$.1f km/h", oneCallForecast.current.wind_speed)
+            binding.windSpeedTextView.text = String.format("%1$.1fkm/h", oneCallForecast.current.wind_speed)
             binding.humidityTextView.text = oneCallForecast.current.humidity.toString()
-            binding.windDegreeTextView.text = oneCallForecast.current.wind_deg.toString()
-            binding.visibilityTextView.text = String.format("${oneCallForecast.current.visibility/1000} km")
+            binding.visibilityTextView.text = String.format("Visibility: %1$1d.0km", oneCallForecast.current.visibility/1000)
         }
         forecastRepository.oneCallForecast.observe(viewLifecycleOwner, forecastObserver)
 
