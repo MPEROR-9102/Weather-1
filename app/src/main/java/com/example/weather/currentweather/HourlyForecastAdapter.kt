@@ -21,15 +21,7 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val tempTextView: TextView = view.findViewById(R.id.tempTextView)
 
     fun bind(hourlyForecast: HourlyForecast) {
-        val currentHour = formatDateTime(hourlyForecast.date, FormatType.NormHour)
-        val calendar = Calendar.getInstance()
-        calendar.time = Date()
-//        hourTextView.text = "${currentHour.substring(1,2)}${calendar.get(Calendar.HOUR).toString()}"
-        if (currentHour.substring(1,2) == calendar.get(Calendar.HOUR).toString()) {
-            hourTextView.text = itemView.resources.getText(R.string.nowTime)
-        } else {
-            hourTextView.text = currentHour
-        }
+        hourTextView.text = formatTime(hourlyForecast.date, TimeFormatType.Hour)
         iconImageView.load(iconUrl(hourlyForecast.weather[0].icon))
         tempTextView.text = formatTempDisplay(hourlyForecast.temp)
     }

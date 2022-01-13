@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_wind.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24166666666666667" />
-        <entry key="app/src/main/res/layout/fragment_current_weather.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_current_weather.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_location_entry.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/hourly_view_layout.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.24166666666666667" />

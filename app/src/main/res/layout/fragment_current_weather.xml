@@ -49,7 +49,7 @@
             android:id="@+id/tempTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="128dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             app:layout_constraintEnd_toEndOf="@+id/locationTextView"
             app:layout_constraintHorizontal_bias="0.0"
@@ -72,7 +72,7 @@
             android:id="@+id/iconImageView"
             android:layout_width="102dp"
             android:layout_height="102dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="96dp"
             android:contentDescription="@string/contentDesc"
             app:layout_constraintEnd_toEndOf="@+id/locationTextView"
             app:layout_constraintHorizontal_bias="1.0"
@@ -82,47 +82,69 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/hourlyForecastCardView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:elevation="10dp"
             android:visibility="invisible"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mainTextView"
+            app:layout_constraintWidth_percent=".9"
             tools:visibility="visible">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/hourlyForecastText"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/textLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/red_500"
-                    android:text="@string/hourly_text_view"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@color/red_500">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/hourlyForecastRecyclerView"
+                    <TextView
+                        android:id="@+id/hourlyForecastText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/hourly_text_view"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/viewLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fadeScrollbars="true"
-                    android:scrollbars="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hourlyForecastText"
-                    tools:listitem="@layout/hourly_view_layout"
-                    tools:orientation="horizontal" />
+                    android:layout_below="@id/textLayout">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/hourlyForecastRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fadeScrollbars="true"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/hourly_view_layout"
+                        tools:orientation="horizontal" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -130,8 +152,8 @@
             android:id="@+id/currentWeatherInfoCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="64dp"
             android:elevation="10dp"
             android:visibility="invisible"
             app:cardCornerRadius="10dp"
@@ -150,10 +172,12 @@
                     android:id="@+id/arrowUpImage"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
                     android:contentDescription="@string/contentDesc"
                     android:src="@drawable/ic_arrow_up"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -173,33 +197,48 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/sunriseImageView"
-                    app:layout_constraintStart_toStartOf="@+id/arrowUpImage"
+                    app:layout_constraintStart_toStartOf="@+id/sunriseImageView"
                     app:layout_constraintTop_toBottomOf="@+id/sunriseImageView"
                     tools:text="6:05 AM" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/sunProgressBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:indicatorColor="@color/red_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/sunsetImageView"
+                    app:layout_constraintStart_toEndOf="@id/sunriseImageView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:progress="50" />
 
                 <ImageView
                     android:id="@+id/sunsetImageView"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="32dp"
                     android:contentDescription="@string/contentDesc"
                     android:src="@drawable/ic_sun"
-                    app:layout_constraintBottom_toBottomOf="@id/sunriseImageView"
-                    app:layout_constraintStart_toEndOf="@id/sunriseImageView"
-                    app:layout_constraintTop_toTopOf="@id/sunriseImageView" />
+                    app:layout_constraintBottom_toBottomOf="@id/arrowDownImage"
+                    app:layout_constraintEnd_toStartOf="@id/arrowDownImage"
+                    app:layout_constraintTop_toTopOf="@id/arrowDownImage" />
 
                 <ImageView
                     android:id="@+id/arrowDownImage"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="32dp"
                     android:contentDescription="@string/contentDesc"
                     android:src="@drawable/ic_arrow_down"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/sunsetImageView"
-                    app:layout_constraintStart_toEndOf="@+id/sunsetImageView"
-                    app:layout_constraintTop_toTopOf="@+id/sunsetImageView"
-                    tools:visibility="visible" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/sunsetTextView"
@@ -207,73 +246,74 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/arrowDownImage"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/sunsetImageView"
                     app:layout_constraintStart_toStartOf="@+id/sunsetImageView"
                     app:layout_constraintTop_toBottomOf="@+id/sunsetImageView"
                     tools:text="6:12 PM" />
 
-                <TextView
-                    android:id="@+id/windSpeedTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="40dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="2.5km/h" />
-
-                <ImageView
-                    android:id="@+id/windSpeedImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:contentDescription="@string/contentDesc"
-                    android:src="@drawable/ic_wind"
-                    app:layout_constraintBottom_toBottomOf="@+id/windSpeedTextView"
-                    app:layout_constraintEnd_toStartOf="@+id/windSpeedTextView"
-                    app:layout_constraintTop_toTopOf="@+id/windSpeedTextView" />
-
-                <TextView
-                    android:id="@+id/humidityTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@id/windSpeedTextView"
-                    app:layout_constraintStart_toStartOf="@id/windSpeedTextView"
-                    app:layout_constraintTop_toBottomOf="@id/windSpeedTextView"
-                    tools:text="54" />
-
-                <ImageView
-                    android:id="@+id/humidityImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/contentDesc"
-                    android:src="@drawable/ic_drop"
-                    app:layout_constraintBottom_toBottomOf="@id/humidityTextView"
-                    app:layout_constraintEnd_toStartOf="@id/humidityTextView"
-                    app:layout_constraintTop_toTopOf="@id/humidityTextView" />
-
-                <TextView
-                    android:id="@+id/visibilityTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/arrowDownImage"
-                    app:layout_constraintStart_toStartOf="@id/arrowUpImage"
-                    app:layout_constraintTop_toBottomOf="@id/sunriseTextView"
-                    tools:text="Visibility: 10.0km" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/windSpeedTextView"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginTop="32dp"-->
+        <!--                    android:layout_marginEnd="40dp"-->
+        <!--                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+        <!--                    android:textStyle="bold"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    tools:text="2.5km/h" />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/windSpeedImage"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginEnd="8dp"-->
+        <!--                    android:contentDescription="@string/contentDesc"-->
+        <!--                    android:src="@drawable/ic_wind"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="@+id/windSpeedTextView"-->
+        <!--                    app:layout_constraintEnd_toStartOf="@+id/windSpeedTextView"-->
+        <!--                    app:layout_constraintTop_toTopOf="@+id/windSpeedTextView" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/humidityTextView"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginTop="8dp"-->
+        <!--                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+        <!--                    android:textStyle="bold"-->
+        <!--                    app:layout_constraintEnd_toEndOf="@id/windSpeedTextView"-->
+        <!--                    app:layout_constraintStart_toStartOf="@id/windSpeedTextView"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@id/windSpeedTextView"-->
+        <!--                    tools:text="54" />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/humidityImage"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:contentDescription="@string/contentDesc"-->
+        <!--                    android:src="@drawable/ic_drop"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="@id/humidityTextView"-->
+        <!--                    app:layout_constraintEnd_toStartOf="@id/humidityTextView"-->
+        <!--                    app:layout_constraintTop_toTopOf="@id/humidityTextView" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/visibilityTextView"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginTop="16dp"-->
+        <!--                    android:layout_marginBottom="8dp"-->
+        <!--                    android:textAppearance="@style/TextAppearance.AppCompat.Small"-->
+        <!--                    android:textStyle="bold"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="@id/arrowDownImage"-->
+        <!--                    app:layout_constraintStart_toStartOf="@id/arrowUpImage"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@id/sunriseTextView"-->
+        <!--                    tools:text="Visibility: 10.0km" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

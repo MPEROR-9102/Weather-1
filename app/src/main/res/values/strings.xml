@@ -3,7 +3,7 @@
     <string name="toolbarMoreItem">Display Units</string>
     <string name="navBarTodayItem">Today</string>
     <string name="contentDesc">TODO</string>
-    <string name="hourly_text_view">\tHourly Forecast</string>
+    <string name="hourly_text_view">Hourly Forecast</string>
     <string name="locationHint">City</string>
     <string name="locationSubmitButton">Submit</string>
     <string name="nowTime">Now</string>
