@@ -13,6 +13,7 @@ private const val KEY_CITY = "key_city"
 class LocationRepository(context: Context) {
 
     private val preferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+    private val forecastRepository = ForecastRepository()
 
     private val _savedLocation: MutableLiveData<Location> = MutableLiveData()
     val savedLocation: LiveData<Location> = _savedLocation
@@ -35,6 +36,4 @@ class LocationRepository(context: Context) {
             _savedLocation.value = Location.City(city)
         }
     }
-
-    fun getLocation() = preferences.getString(KEY_CITY, "") ?: ""
 }

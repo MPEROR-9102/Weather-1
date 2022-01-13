@@ -18,7 +18,11 @@ class LocationEntryFragment : Fragment() {
 
     private lateinit var locationRepository: LocationRepository
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentLocationEntryBinding.inflate(inflater, container, false)
 
         activity?.findViewById<FloatingActionButton>(R.id.currentLocationButton)?.hide()
@@ -32,8 +36,8 @@ class LocationEntryFragment : Fragment() {
         binding.locationSubmitButton.setOnClickListener {
             val cityName = binding.locationEditText.text
             when {
-                cityName.isEmpty() -> binding.locationEditText.error ="Enter a City Name"
-                else ->  {
+                cityName.isEmpty() -> binding.locationEditText.error = "Enter a City Name"
+                else -> {
                     locationRepository.saveLocation(cityName.toString().capitalize())
                     findNavController().navigateUp()
                 }

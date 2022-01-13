@@ -21,7 +21,10 @@ class ForecastRepository {
             BuildConfig.OPEN_WEATHER_MAP_API_KEY
         )
         locationCall.enqueue(object : Callback<CurrentLocation> {
-            override fun onResponse(call: Call<CurrentLocation>, response: Response<CurrentLocation>) {
+            override fun onResponse(
+                call: Call<CurrentLocation>,
+                response: Response<CurrentLocation>
+            ) {
                 val currentLocationResponse = response.body()
 
                 if (currentLocationResponse != null) {
@@ -30,18 +33,26 @@ class ForecastRepository {
                         currentLocationResponse.coord.lon,
                         BuildConfig.OPEN_WEATHER_MAP_API_KEY,
                         "minutely,alerts",
-                        "metric"
+                        "imperial"
                     )
                     forecastCall.enqueue(object : Callback<OneCallForecast> {
-                        override fun onResponse(call: Call<OneCallForecast>, response: Response<OneCallForecast>) {
+                        override fun onResponse(
+                            call: Call<OneCallForecast>,
+                            response: Response<OneCallForecast>
+                        ) {
                             val forecastResponse = response.body()
+                            forecastResponse?.name = currentLocationResponse.name
                             if (forecastResponse != null) {
                                 _oneCallForecast.value = forecastResponse
                             }
                         }
 
                         override fun onFailure(call: Call<OneCallForecast>, t: Throwable) {
-                            Log.e(ForecastRepository::class.java.simpleName, "Error loading forecast details", t)
+                            Log.e(
+                                ForecastRepository::class.java.simpleName,
+                                "Error loading forecast details",
+                                t
+                            )
                         }
                     })
                 }
@@ -49,7 +60,11 @@ class ForecastRepository {
             }
 
             override fun onFailure(call: Call<CurrentLocation>, t: Throwable) {
-                Log.e(ForecastRepository::class.java.simpleName, "Error loading location details", t)
+                Log.e(
+                    ForecastRepository::class.java.simpleName,
+                    "Error loading location details",
+                    t
+                )
             }
         })
     }

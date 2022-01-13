@@ -6,7 +6,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-fun createOpenWeatherMapService() : OpenWeatherMapService{
+fun createOpenWeatherMapService(): OpenWeatherMapService {
     val retrofit = Retrofit.Builder()
         .baseUrl("https://api.openweathermap.org")
         .addConverterFactory(MoshiConverterFactory.create())
@@ -20,7 +20,7 @@ interface OpenWeatherMapService {
     fun currentLocation(
         @Query("q") cityName: String,
         @Query("appid") apiKey: String
-    ) : Call<CurrentLocation>
+    ): Call<CurrentLocation>
 
     @GET("/data/2.5/onecall")
     fun oneCallForecast(
@@ -29,5 +29,5 @@ interface OpenWeatherMapService {
         @Query("appid") apiKey: String,
         @Query("exclude") exclude: String,
         @Query("units") units: String
-    ) : Call<OneCallForecast>
+    ): Call<OneCallForecast>
 }

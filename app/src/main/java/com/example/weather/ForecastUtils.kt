@@ -1,74 +1,57 @@
 package com.example.weather
 
-import android.annotation.SuppressLint
-import java.text.SimpleDateFormat
-import java.util.*
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
-enum class TimeFormatType {
-    FullTime, Hour
-}
-
-@SuppressLint("SimpleDateFormat")
-private val DATE_FORMAT = SimpleDateFormat("MM-dd-yy")
-@SuppressLint("SimpleDateFormat")
-private val TIME_FORMAT_HOUR = SimpleDateFormat("HH")
-@SuppressLint("SimpleDateFormat")
-private val TIME_FORMAT_MIN = SimpleDateFormat("mm")
-@SuppressLint("SimpleDateFormat")
-private val TIME_12_CLOCK = SimpleDateFormat("a")
-
+@RequiresApi(Build.VERSION_CODES.O)
+fun getClock(dt: Long, timeZone: String): ZonedDateTime = Instant.ofEpochSecond(dt).atZone(ZoneId.of(timeZone))
 
 fun iconUrl(iconId: String) = "http://openweathermap.org/img/wn/$iconId@2x.png"
 
-fun formatTempDisplay(temp: Float) = String.format("%.0f°", temp)
-
-fun formatDate(dt: Long) = DATE_FORMAT.format(Date(dt*1000))
-
-private fun getCalenderHour(hourType: Int = Calendar.HOUR) : Int {
-    val calendar = Calendar.getInstance()
-    calendar.time = Date()
-    return when(hourType) {
-        Calendar.HOUR -> calendar.get(Calendar.HOUR)
-        Calendar.HOUR_OF_DAY -> calendar.get(Calendar.HOUR_OF_DAY)
-        Calendar.MINUTE -> calendar.get(Calendar.MINUTE)
-        else -> -1
+fun formatTempDisplay(temp: Float, tempDisplayUnit: TempDisplayUnit) : String {
+    return when (tempDisplayUnit) {
+        TempDisplayUnit.Fahrenheit -> String.format("%.0f°", temp)
+        TempDisplayUnit.Celsius -> {
+            val celsiusTemp = (temp - 32f) * (5f / 9f)
+            String.format("%.0f°", celsiusTemp)
+        }
     }
 }
 
-fun formatTime(dt: Long, formatType: TimeFormatType) : String {
-    var hour = TIME_FORMAT_HOUR.format(Date(dt*1000)).toInt()
-    if (hour > 12)
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatDate(dt: Long, timeZone: String) = getClock(dt, timeZone).toLocalDate().toString()
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatTime(dt: Long, timeZone: String): String {
+    var hour = getClock(dt, timeZone).hour
+    var clock = "AM"
+    if (hour > 12) {
         hour -= 12
-    val clock = TIME_12_CLOCK.format(Date(dt*1000)).uppercase()
-
-    return when (formatType) {
-        TimeFormatType.Hour ->  {
-            if (hour == getCalenderHour()) {
-                "Now"
-            } else
-                String.format("$hour $clock")
-        }
-        TimeFormatType.FullTime -> {
-            val min = TIME_FORMAT_MIN.format(Date(dt*1000))
-            String.format("$hour:$min $clock")
-        }
+        clock = "PM"
     }
+    val min = getClock(dt, timeZone).minute
+    return String.format("$hour:$min $clock")
 }
 
-private fun hourInMin(dt: Long) =
-    TIME_FORMAT_HOUR.format(Date(dt * 1000)).toInt() * 60 + TIME_FORMAT_MIN.format(Date(dt * 1000)).toInt()
+@RequiresApi(Build.VERSION_CODES.O)
+private fun hourInMin(dt: Long, timeZone: String) =
+    getClock(dt, timeZone).hour * 60 + getClock(dt, timeZone).minute
 
-fun getSunProgress(rise: Long, set: Long) : Int {
-    val riseMin = hourInMin(rise)
-    val setMin = hourInMin(set)
-    val currentMin = getCalenderHour(Calendar.HOUR_OF_DAY) * 60 + getCalenderHour(Calendar.MINUTE)
+@RequiresApi(Build.VERSION_CODES.O)
+fun getSunProgress(dt: Long, rise: Long, set: Long, timeZone: String): Int {
+    val riseMin = hourInMin(rise, timeZone)
+    val setMin = hourInMin(set, timeZone)
+    val currentMin = getClock(dt, timeZone).hour * 60 + getClock(dt, timeZone).minute
 
     val estimatedInterval = setMin - riseMin
     val liveStat = currentMin - riseMin
 
     return when {
-        liveStat <= riseMin -> 0
-        (liveStat in (riseMin + 1)..setMin) -> (liveStat*100)/estimatedInterval
+        currentMin <= riseMin -> 0
+        (currentMin in (riseMin + 1)..setMin) -> (liveStat * 100) / estimatedInterval
         else -> 100
     }
 }

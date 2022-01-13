@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/toolbarMoreItem"
+        android:id="@+id/toolbarTempItem"
         android:title="@string/toolbarMoreItem"
-        android:icon="@drawable/ic_more"
+        android:icon="@drawable/ic_thermometer"
         app:showAsAction="ifRoom" />
 
 </menu>

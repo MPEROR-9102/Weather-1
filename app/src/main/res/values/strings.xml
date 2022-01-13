@@ -7,4 +7,5 @@
     <string name="locationHint">City</string>
     <string name="locationSubmitButton">Submit</string>
     <string name="nowTime">Now</string>
+    <string name="introText">No City Data to Show, Add Your City</string>
 </resources>
