@@ -18,6 +18,7 @@ data class CurrentWeather(
     val sunrise: Long,
     val sunset: Long,
     val temp: Float,
+    val pressure: Int,
     val humidity: Int,
     val visibility: Int,
     val wind_speed: Float,

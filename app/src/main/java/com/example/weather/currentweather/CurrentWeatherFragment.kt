@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -65,8 +65,9 @@ class CurrentWeatherFragment : Fragment() {
             binding.introText.visibility = TextView.GONE
             binding.currentWeatherProgressBar.visibility = ProgressBar.GONE
 
-            binding.hourlyForecastCardView.visibility = ImageView.VISIBLE
-            binding.currentWeatherInfoCardView.visibility = ImageView.VISIBLE
+            binding.hourlyForecastCardView.visibility = CardView.VISIBLE
+            binding.sunProgressCardView.visibility = CardView.VISIBLE
+            binding.detailsCardView.visibility = CardView.VISIBLE
 
             binding.locationTextView.text = oneCallForecast.name
             binding.timeTextView.text = formatTime(oneCallForecast.current.date, oneCallForecast.timezone)
@@ -75,6 +76,8 @@ class CurrentWeatherFragment : Fragment() {
             binding.mainTextView.text = oneCallForecast.current.weather[0].main
             binding.iconImageView.load(iconUrl(oneCallForecast.current.weather[0].icon))
 
+            hourlyForecastAdapter.currentTime = oneCallForecast.current.date
+            hourlyForecastAdapter.timeZone = oneCallForecast.timezone
             hourlyForecastAdapter.submitList(oneCallForecast.hourly.subList(0, 24))
 
             binding.sunriseTextView.text =
@@ -84,9 +87,10 @@ class CurrentWeatherFragment : Fragment() {
             binding.sunsetTextView.text =
                 formatTime(oneCallForecast.current.sunset, oneCallForecast.timezone)
 
-//            binding.windSpeedTextView.text = String.format("%1$.1fkm/h", oneCallForecast.current.wind_speed)
-//            binding.humidityTextView.text = oneCallForecast.current.humidity.toString()
-//            binding.visibilityTextView.text = String.format("Visibility: %1$1d.0km", oneCallForecast.current.visibility/1000)
+            binding.humidityTextView.text = String.format("%1$1d", oneCallForecast.current.humidity)
+            binding.windTextView.text = String.format("%1$.1f km/h", oneCallForecast.current.wind_speed)
+            binding.pressureTextView.text = String.format("%1$1d hPa", oneCallForecast.current.pressure)
+            binding.visibilityTextView.text = String.format("%1$1d.0 km", oneCallForecast.current.visibility/1000)
         }
         forecastRepository.oneCallForecast.observe(viewLifecycleOwner, forecastObserver)
 

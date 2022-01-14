@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.weather.currentweather.CurrentWeatherFragmentDirections
 import com.example.weather.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showTempDisplayDialog() {
         val builder = AlertDialog.Builder(this)
-            .setTitle("Choose Display Unit")
+            .setTitle("Choose Temperature Unit")
             .setMessage("Units to display the current temperature.")
             .setPositiveButton("°F") { _, _ ->
                 settingsManager.upDateTempDisplayUnit(TempDisplayUnit.Fahrenheit)

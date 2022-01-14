@@ -3,9 +3,15 @@
     <string name="toolbarMoreItem">Display Units</string>
     <string name="navBarTodayItem">Today</string>
     <string name="contentDesc">TODO</string>
-    <string name="hourly_text_view">Hourly Forecast</string>
+    <string name="hourly_text_view">HOURLY FORECAST</string>
     <string name="locationHint">City</string>
     <string name="locationSubmitButton">Submit</string>
     <string name="nowTime">Now</string>
     <string name="introText">No City Data to Show, Add Your City</string>
+    <string name="detailsText">DETAILS</string>
+    <string name="humidityText">Humidity</string>
+    <string name="windText">Wind</string>
+    <string name="pressureText">Pressure</string>
+    <string name="visibilityText">Visibility</string>
+    <string name="sunProgressText">SUNRISE &amp; SUNSET</string>
 </resources>

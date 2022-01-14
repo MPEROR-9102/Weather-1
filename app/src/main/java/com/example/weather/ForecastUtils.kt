@@ -7,7 +7,7 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun getClock(dt: Long, timeZone: String): ZonedDateTime = Instant.ofEpochSecond(dt).atZone(ZoneId.of(timeZone))
+private fun getClock(dt: Long, timeZone: String): ZonedDateTime = Instant.ofEpochSecond(dt).atZone(ZoneId.of(timeZone))
 
 fun iconUrl(iconId: String) = "http://openweathermap.org/img/wn/$iconId@2x.png"
 
@@ -22,18 +22,47 @@ fun formatTempDisplay(temp: Float, tempDisplayUnit: TempDisplayUnit) : String {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun formatDate(dt: Long, timeZone: String) = getClock(dt, timeZone).toLocalDate().toString()
+fun formatDate(dt: Long, timeZone: String) : String {
+    val clock = getClock(dt, timeZone)
+    return "${clock.dayOfWeek.name.lowercase().capitalize().substring(0,3)}, " +
+            clock.month.name.lowercase().capitalize().substring(0,3) + " "+
+            clock.toLocalDate().toString().substring(8)
+}
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun formatTime(dt: Long, timeZone: String): String {
     var hour = getClock(dt, timeZone).hour
     var clock = "AM"
-    if (hour > 12) {
-        hour -= 12
+
+    if (hour >= 12)
         clock = "PM"
-    }
+    if (hour > 12)
+        hour -= 12
     val min = getClock(dt, timeZone).minute
-    return String.format("$hour:$min $clock")
+    return when (min.toString().length) {
+        1 -> String.format("$hour:0$min $clock")
+        2 -> String.format("$hour:$min $clock")
+        else -> ""
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+private fun getHour(dt: Long, timeZone: String) : String {
+    var hour = getClock(dt, timeZone).hour
+    var clock = "AM"
+
+    if (hour >= 12)
+        clock = "PM"
+    if (hour > 12)
+        hour -= 12
+    return "$hour $clock"
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatHourlyTime(currentTime: Long, hourlyTime: Long, timeZone: String): String {
+    val current = getHour(currentTime, timeZone)
+    val hourly = getHour(hourlyTime, timeZone)
+    return if (current == hourly) "Now" else hourly
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
