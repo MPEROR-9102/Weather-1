@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.ForecastRepository
 import com.example.weather.Location
 import com.example.weather.LocationRepository
+import com.example.weather.R
 import com.example.weather.api.OneCallForecast
 import com.example.weather.databinding.FragmentWeeklyForecastBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WeeklyForecastFragment : Fragment() {
 
@@ -29,6 +31,8 @@ class WeeklyForecastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _biding = FragmentWeeklyForecastBinding.inflate(inflater, container, false)
+
+        activity?.findViewById<FloatingActionButton>(R.id.currentLocationButton)?.hide()
 
         locationRepository = LocationRepository(requireContext())
         forecastRepository = ForecastRepository()
