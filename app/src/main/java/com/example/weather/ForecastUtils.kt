@@ -9,11 +9,12 @@ import java.time.ZonedDateTime
 private val DIRECTIONS = listOf("N", "NE", "E", "SE", "S", "SW", "W", "NW")
 
 @RequiresApi(Build.VERSION_CODES.O)
-private fun getClock(dt: Long, timeZone: String): ZonedDateTime = Instant.ofEpochSecond(dt).atZone(ZoneId.of(timeZone))
+private fun getClock(dt: Long, timeZone: String): ZonedDateTime =
+    Instant.ofEpochSecond(dt).atZone(ZoneId.of(timeZone))
 
 fun iconUrl(iconId: String) = "http://openweathermap.org/img/wn/$iconId@2x.png"
 
-fun formatTempDisplay(temp: Float, tempDisplayUnit: TempDisplayUnit) : String {
+fun formatTempDisplay(temp: Float, tempDisplayUnit: TempDisplayUnit): String {
     return when (tempDisplayUnit) {
         TempDisplayUnit.Fahrenheit -> String.format("%.0f°", temp)
         TempDisplayUnit.Celsius -> {
@@ -24,10 +25,10 @@ fun formatTempDisplay(temp: Float, tempDisplayUnit: TempDisplayUnit) : String {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun formatDate(dt: Long, timeZone: String) : String {
+fun formatDate(dt: Long, timeZone: String): String {
     val clock = getClock(dt, timeZone)
-    return "${clock.dayOfWeek.name.lowercase().capitalize().substring(0,3)}, " +
-            clock.month.name.lowercase().capitalize().substring(0,3) + " "+
+    return "${clock.dayOfWeek.name.lowercase().capitalize().substring(0, 3)}, " +
+            clock.month.name.lowercase().capitalize().substring(0, 3) + " " +
             clock.toLocalDate().toString().substring(8)
 }
 
@@ -49,7 +50,7 @@ fun formatTime(dt: Long, timeZone: String): String {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-private fun getHour(dt: Long, timeZone: String) : String {
+private fun getHour(dt: Long, timeZone: String): String {
     var hour = getClock(dt, timeZone).hour
     var clock = "AM"
 
@@ -87,4 +88,4 @@ fun getSunProgress(dt: Long, rise: Long, set: Long, timeZone: String): Int {
     }
 }
 
-fun getDirection(degrees: Int) = DIRECTIONS[degrees/45]
+fun getDirection(degrees: Int) = DIRECTIONS[degrees / 45]

@@ -16,11 +16,12 @@ import com.example.weather.api.HourlyForecast
 import kotlin.properties.Delegates
 
 
-class ViewHolder(view: View,
-                 private val currentTime: Long,
-                 private val timeZone: String,
-                 private val settingsManager: SettingsManager
-                 ) : RecyclerView.ViewHolder(view) {
+class ViewHolder(
+    view: View,
+    private val currentTime: Long,
+    private val timeZone: String,
+    private val settingsManager: SettingsManager
+) : RecyclerView.ViewHolder(view) {
 
     private val hourTextView: TextView = view.findViewById(R.id.hourTextView)
     private val iconImageView: ImageView = view.findViewById(R.id.iconImageView)
@@ -30,7 +31,8 @@ class ViewHolder(view: View,
     fun bind(hourlyForecast: HourlyForecast) {
         hourTextView.text = formatHourlyTime(currentTime, hourlyForecast.date, timeZone)
         iconImageView.load(iconUrl(hourlyForecast.weather[0].icon))
-        tempTextView.text = formatTempDisplay(hourlyForecast.temp, settingsManager.getTempDisplayUnit())
+        tempTextView.text =
+            formatTempDisplay(hourlyForecast.temp, settingsManager.getTempDisplayUnit())
     }
 }
 

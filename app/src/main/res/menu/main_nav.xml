@@ -10,8 +10,8 @@
 
     <item
         android:id="@+id/weeklyForecastFragment"
-        android:title="@string/navBarWeeklyItem"
         android:icon="@drawable/ic_weekly"
+        android:title="@string/navBarWeeklyItem"
         app:showAsAction="ifRoom" />
 
 </menu>

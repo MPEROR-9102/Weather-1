@@ -14,13 +14,16 @@ class SettingsManager(context: Context) {
 
     fun upDateTempDisplayUnit(tempDisplayUnit: TempDisplayUnit) {
         when (tempDisplayUnit) {
-            TempDisplayUnit.Fahrenheit -> preferences.edit().putString(KEY_UNIT, tempDisplayUnit.name).apply()
-            TempDisplayUnit.Celsius -> preferences.edit().putString(KEY_UNIT, tempDisplayUnit.name).apply()
+            TempDisplayUnit.Fahrenheit -> preferences.edit()
+                .putString(KEY_UNIT, tempDisplayUnit.name).apply()
+            TempDisplayUnit.Celsius -> preferences.edit().putString(KEY_UNIT, tempDisplayUnit.name)
+                .apply()
         }
     }
 
-    fun getTempDisplayUnit() : TempDisplayUnit {
-        val tempUnit = preferences.getString(KEY_UNIT, TempDisplayUnit.Fahrenheit.name) ?: TempDisplayUnit.Fahrenheit.name
+    fun getTempDisplayUnit(): TempDisplayUnit {
+        val tempUnit = preferences.getString(KEY_UNIT, TempDisplayUnit.Fahrenheit.name)
+            ?: TempDisplayUnit.Fahrenheit.name
         return TempDisplayUnit.valueOf(tempUnit)
     }
 }

@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/toolbarTempItem"
-        android:title="@string/toolbarMoreItem"
         android:icon="@drawable/ic_thermometer"
+        android:title="@string/toolbarMoreItem"
         app:showAsAction="ifRoom" />
 
 </menu>

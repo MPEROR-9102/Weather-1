@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             return@setOnMenuItemClickListener when (menuItem.itemId) {
-                R.id.toolbarTempItem ->  {
+                R.id.toolbarTempItem -> {
                     showTempDisplayDialog()
                     true
                 }

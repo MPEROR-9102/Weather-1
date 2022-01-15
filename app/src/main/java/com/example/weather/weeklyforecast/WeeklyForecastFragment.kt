@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.ForecastRepository
 import com.example.weather.Location
 import com.example.weather.LocationRepository
@@ -32,10 +33,12 @@ class WeeklyForecastFragment : Fragment() {
         locationRepository = LocationRepository(requireContext())
         forecastRepository = ForecastRepository()
 
-        binding.dailyRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2,
-            GridLayoutManager.VERTICAL, false)
+        binding.dailyForecastRecyclerView.layoutManager = GridLayoutManager(
+            requireContext(), 2,
+            GridLayoutManager.VERTICAL, false
+        )
         val dailyForecastAdapter = DailyForecastAdapter()
-        binding.dailyRecyclerView.adapter = dailyForecastAdapter
+        binding.dailyForecastRecyclerView.adapter = dailyForecastAdapter
 
         val locationObserver = Observer<Location> { location ->
             when (location) {
@@ -51,6 +54,7 @@ class WeeklyForecastFragment : Fragment() {
         val forecastObserver = Observer<OneCallForecast> { oneCallForecast ->
             binding.introText.visibility = TextView.GONE
             binding.currentWeatherProgressBar.visibility = ProgressBar.GONE
+            binding.dailyForecastRecyclerView.visibility = RecyclerView.VISIBLE
 
             dailyForecastAdapter.timeZone = oneCallForecast.timezone
             dailyForecastAdapter.submitList(oneCallForecast.daily)

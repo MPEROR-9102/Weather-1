@@ -16,8 +16,10 @@ import com.example.weather.api.DailyForecast
 import com.example.weather.formatDate
 import com.example.weather.iconUrl
 
-class ViewHolder(view: View,
-                 private val timeZone: String) : RecyclerView.ViewHolder(view) {
+class ViewHolder(
+    view: View,
+    private val timeZone: String
+) : RecyclerView.ViewHolder(view) {
     private val dateTextView: TextView = view.findViewById(R.id.dateTextView)
     private val iconImageView: ImageView = view.findViewById(R.id.iconImageView)
     private val descriptionTextView: TextView = view.findViewById(R.id.descriptionTextView)
@@ -50,7 +52,8 @@ class DailyForecastAdapter : ListAdapter<DailyForecast, ViewHolder>(DIFF_CONFIG)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.daily_view_layout, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.daily_view_layout, parent, false)
         return ViewHolder(itemView, timeZone)
     }
 

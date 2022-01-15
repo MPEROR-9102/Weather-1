@@ -30,7 +30,11 @@ class CurrentWeatherFragment : Fragment() {
     private lateinit var settingsManager: SettingsManager
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
 
         activity?.findViewById<FloatingActionButton>(R.id.currentLocationButton)?.show()
@@ -72,9 +76,14 @@ class CurrentWeatherFragment : Fragment() {
             binding.openWeatherMapLogo.visibility = ImageView.VISIBLE
 
             binding.locationTextView.text = oneCallForecast.name
-            binding.timeTextView.text = formatTime(oneCallForecast.current.date, oneCallForecast.timezone)
-            binding.dateTextView.text = formatDate(oneCallForecast.current.date, oneCallForecast.timezone)
-            binding.tempTextView.text = formatTempDisplay(oneCallForecast.current.temp, settingsManager.getTempDisplayUnit())
+            binding.timeTextView.text =
+                formatTime(oneCallForecast.current.date, oneCallForecast.timezone)
+            binding.dateTextView.text =
+                formatDate(oneCallForecast.current.date, oneCallForecast.timezone)
+            binding.tempTextView.text = formatTempDisplay(
+                oneCallForecast.current.temp,
+                settingsManager.getTempDisplayUnit()
+            )
             binding.mainTextView.text = oneCallForecast.current.weather[0].main
             binding.iconImageView.load(iconUrl(oneCallForecast.current.weather[0].icon))
 
@@ -85,15 +94,25 @@ class CurrentWeatherFragment : Fragment() {
             binding.sunriseTextView.text =
                 formatTime(oneCallForecast.current.sunrise, oneCallForecast.timezone)
             binding.sunProgressBar.progress =
-                getSunProgress(oneCallForecast.current.date, oneCallForecast.current.sunrise, oneCallForecast.current.sunset, oneCallForecast.timezone)
+                getSunProgress(
+                    oneCallForecast.current.date,
+                    oneCallForecast.current.sunrise,
+                    oneCallForecast.current.sunset,
+                    oneCallForecast.timezone
+                )
             binding.sunsetTextView.text =
                 formatTime(oneCallForecast.current.sunset, oneCallForecast.timezone)
 
-            binding.humidityTextView.text = String.format("%1$1d%2$%", oneCallForecast.current.humidity)
-            binding.windText.text = String.format("%1$1s Wind", getDirection(oneCallForecast.current.wind_deg))
-            binding.windTextView.text = String.format("%1$.1f km/h", oneCallForecast.current.wind_speed)
-            binding.pressureTextView.text = String.format("%1$1d hPa", oneCallForecast.current.pressure)
-            binding.visibilityTextView.text = String.format("%1$1d.0 km", oneCallForecast.current.visibility/1000)
+            binding.humidityTextView.text =
+                String.format("%1$1d%2$%", oneCallForecast.current.humidity)
+            binding.windText.text =
+                String.format("%1$1s Wind", getDirection(oneCallForecast.current.wind_deg))
+            binding.windTextView.text =
+                String.format("%1$.1f km/h", oneCallForecast.current.wind_speed)
+            binding.pressureTextView.text =
+                String.format("%1$1d hPa", oneCallForecast.current.pressure)
+            binding.visibilityTextView.text =
+                String.format("%1$1d.0 km", oneCallForecast.current.visibility / 1000)
         }
         forecastRepository.oneCallForecast.observe(viewLifecycleOwner, forecastObserver)
 
