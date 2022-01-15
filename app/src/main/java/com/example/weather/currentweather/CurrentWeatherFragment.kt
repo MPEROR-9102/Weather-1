@@ -112,7 +112,7 @@ class CurrentWeatherFragment : Fragment() {
             binding.pressureTextView.text =
                 String.format("%1$1d hPa", oneCallForecast.current.pressure)
             binding.visibilityTextView.text =
-                String.format("%1$1d.0 km", oneCallForecast.current.visibility / 1000)
+                String.format("%1$1.1f km", oneCallForecast.current.visibility / 1000.0)
         }
         forecastRepository.oneCallForecast.observe(viewLifecycleOwner, forecastObserver)
 
