@@ -45,17 +45,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showTempDisplayDialog() {
+        val toast = Toast.makeText(this, "Unit Updated, Tap Today to Refresh", Toast.LENGTH_LONG)
         val builder = AlertDialog.Builder(this)
             .setTitle("Choose Temperature Unit")
             .setMessage("Units to display the current temperature.")
             .setPositiveButton("°F") { _, _ ->
                 settingsManager.upDateTempDisplayUnit(TempDisplayUnit.Fahrenheit)
+                toast.show()
             }
             .setNeutralButton("°C") { _, _ ->
                 settingsManager.upDateTempDisplayUnit(TempDisplayUnit.Celsius)
-            }
-            .setOnDismissListener {
-                Toast.makeText(this, "Unit Updated, Tap Today to Refresh", Toast.LENGTH_LONG).show()
+                toast.show()
             }
         builder.show()
     }

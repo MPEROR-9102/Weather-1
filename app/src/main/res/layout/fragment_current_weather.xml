@@ -129,7 +129,7 @@
                     android:id="@+id/textLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/red_500">
+                    android:background="@color/blue_200">
 
                     <TextView
                         android:id="@+id/hourlyForecastText"
@@ -247,7 +247,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    app:indicatorColor="@color/red_500"
+                    app:indicatorColor="@color/blue_200"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/sunsetImageView"
                     app:layout_constraintStart_toEndOf="@id/sunriseImageView"
@@ -300,11 +300,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:layout_marginBottom="32dp"
             android:elevation="10dp"
             android:visibility="gone"
             app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sunProgressCardView"
@@ -414,6 +412,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:id="@+id/openWeatherMapLogo"
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/contentDesc"
+            android:src="@drawable/open_weather_map"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsCardView"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

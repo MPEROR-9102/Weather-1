@@ -2,6 +2,7 @@
     <string name="app_name">Weather</string>
     <string name="toolbarMoreItem">Display Units</string>
     <string name="navBarTodayItem">Today</string>
+    <string name="navBarWeeklyItem">Weekly</string>
     <string name="contentDesc">TODO</string>
     <string name="hourly_text_view">HOURLY FORECAST</string>
     <string name="locationHint">City</string>

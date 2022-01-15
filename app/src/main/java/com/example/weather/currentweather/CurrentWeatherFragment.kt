@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -68,6 +69,7 @@ class CurrentWeatherFragment : Fragment() {
             binding.hourlyForecastCardView.visibility = CardView.VISIBLE
             binding.sunProgressCardView.visibility = CardView.VISIBLE
             binding.detailsCardView.visibility = CardView.VISIBLE
+            binding.openWeatherMapLogo.visibility = ImageView.VISIBLE
 
             binding.locationTextView.text = oneCallForecast.name
             binding.timeTextView.text = formatTime(oneCallForecast.current.date, oneCallForecast.timezone)
@@ -87,7 +89,8 @@ class CurrentWeatherFragment : Fragment() {
             binding.sunsetTextView.text =
                 formatTime(oneCallForecast.current.sunset, oneCallForecast.timezone)
 
-            binding.humidityTextView.text = String.format("%1$1d", oneCallForecast.current.humidity)
+            binding.humidityTextView.text = String.format("%1$1d%2$%", oneCallForecast.current.humidity)
+            binding.windText.text = String.format("%1$1s Wind", getDirection(oneCallForecast.current.wind_deg))
             binding.windTextView.text = String.format("%1$.1f km/h", oneCallForecast.current.wind_speed)
             binding.pressureTextView.text = String.format("%1$1d hPa", oneCallForecast.current.pressure)
             binding.visibilityTextView.text = String.format("%1$1d.0 km", oneCallForecast.current.visibility/1000)

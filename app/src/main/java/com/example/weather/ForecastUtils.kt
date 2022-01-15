@@ -6,6 +6,8 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
+private val DIRECTIONS = listOf("N", "NE", "E", "SE", "S", "SW", "W", "NW")
+
 @RequiresApi(Build.VERSION_CODES.O)
 private fun getClock(dt: Long, timeZone: String): ZonedDateTime = Instant.ofEpochSecond(dt).atZone(ZoneId.of(timeZone))
 
@@ -84,3 +86,5 @@ fun getSunProgress(dt: Long, rise: Long, set: Long, timeZone: String): Int {
         else -> 100
     }
 }
+
+fun getDirection(degrees: Int) = DIRECTIONS[degrees/45]
