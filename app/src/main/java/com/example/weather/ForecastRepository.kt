@@ -41,8 +41,9 @@ class ForecastRepository {
                             response: Response<OneCallForecast>
                         ) {
                             val forecastResponse = response.body()
-                            forecastResponse?.name = currentLocationResponse.name
                             if (forecastResponse != null) {
+                                forecastResponse.name = currentLocationResponse.name
+                                forecastResponse.country = currentLocationResponse.sys.country
                                 _oneCallForecast.value = forecastResponse
                             }
                         }

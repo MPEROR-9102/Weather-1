@@ -19,9 +19,4 @@
         android:name="com.example.weather.locationentry.LocationEntryFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_location_entry" />
-    <fragment
-        android:id="@+id/weeklyForecastFragment"
-        android:name="com.example.weather.weeklyforecast.WeeklyForecastFragment"
-        android:label="Weekly"
-        tools:layout="@layout/fragment_weekly_forecast" />
 </navigation>

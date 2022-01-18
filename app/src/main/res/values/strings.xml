@@ -15,4 +15,5 @@
     <string name="pressureText">Pressure</string>
     <string name="visibilityText">Visibility</string>
     <string name="sunProgressText">SUNRISE &amp; SUNSET</string>
+    <string name="dailyForecastText">WEEKLY FORECAST</string>
 </resources>

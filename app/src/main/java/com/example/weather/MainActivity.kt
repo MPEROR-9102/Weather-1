@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.toolbar.setupWithNavController(findNavController(R.id.navHostFragment))
-        binding.navBar.setupWithNavController(findNavController(R.id.navHostFragment))
 
         settingsManager = SettingsManager(this)
 
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showTempDisplayDialog() {
-        val toast = Toast.makeText(this, "Unit Updated, Tap Today to Refresh", Toast.LENGTH_LONG)
+        val toast = Toast.makeText(this, "Units will be updated upon app restart", Toast.LENGTH_LONG)
         val builder = AlertDialog.Builder(this)
             .setTitle("Choose Temperature Unit")
             .setMessage("Units to display the current temperature.")

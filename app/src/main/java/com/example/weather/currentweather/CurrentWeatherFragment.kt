@@ -13,11 +13,14 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.weather.*
 import com.example.weather.api.OneCallForecast
 import com.example.weather.databinding.FragmentCurrentWeatherBinding
+import com.example.weather.weeklyforecast.DailyForecastAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CurrentWeatherFragment : Fragment() {
@@ -44,8 +47,8 @@ class CurrentWeatherFragment : Fragment() {
         settingsManager = SettingsManager(requireContext())
 
         val hourlyForecastAdapter = HourlyForecastAdapter(settingsManager)
-        binding.hourlyForecastRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.hourlyForecastRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.HORIZONTAL, false)
         binding.hourlyForecastRecyclerView.addItemDecoration(
             DividerItemDecoration(
                 requireContext(),
@@ -53,6 +56,13 @@ class CurrentWeatherFragment : Fragment() {
             )
         )
         binding.hourlyForecastRecyclerView.adapter = hourlyForecastAdapter
+
+        binding.dailyForecastRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.HORIZONTAL, false)
+        binding.dailyForecastRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(),
+        DividerItemDecoration.HORIZONTAL))
+        val dailyForecastAdapter = DailyForecastAdapter()
+        binding.dailyForecastRecyclerView.adapter = dailyForecastAdapter
 
         val locationObserver = Observer<Location> { savedLocation ->
             when (savedLocation) {
@@ -73,9 +83,11 @@ class CurrentWeatherFragment : Fragment() {
             binding.hourlyForecastCardView.visibility = CardView.VISIBLE
             binding.sunProgressCardView.visibility = CardView.VISIBLE
             binding.detailsCardView.visibility = CardView.VISIBLE
+            binding.dailyForecastCardView.visibility = CardView.VISIBLE
             binding.openWeatherMapLogo.visibility = ImageView.VISIBLE
 
-            binding.locationTextView.text = oneCallForecast.name
+            binding.locationTextView.text =
+                String.format("%1$1s, %2$1s", oneCallForecast.name, oneCallForecast.country)
             binding.timeTextView.text =
                 formatTime(oneCallForecast.current.date, oneCallForecast.timezone)
             binding.dateTextView.text =
@@ -113,6 +125,9 @@ class CurrentWeatherFragment : Fragment() {
                 String.format("%1$1d hPa", oneCallForecast.current.pressure)
             binding.visibilityTextView.text =
                 String.format("%1$1.1f km", oneCallForecast.current.visibility / 1000.0)
+
+            dailyForecastAdapter.timeZone = oneCallForecast.timezone
+            dailyForecastAdapter.submitList(oneCallForecast.daily)
         }
         forecastRepository.oneCallForecast.observe(viewLifecycleOwner, forecastObserver)
 

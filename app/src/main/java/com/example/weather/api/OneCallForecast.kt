@@ -44,6 +44,7 @@ data class DailyForecast(
 data class OneCallForecast(
     val timezone: String,
     var name: String,
+    var country: String,
     val current: CurrentWeather,
     val hourly: List<HourlyForecast>,
     val daily: List<DailyForecast>
